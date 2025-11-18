@@ -1,55 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>&lt;model-viewer&gt; example</title>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AR 3D Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module"
+        src="https://modelviewer.dev/node_modules/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+    <style>
+        
+        :not(:defined) > * {
+            display: none;
+        }
 
-  </head> 
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 80vh;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        
+        #ar-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #525f6b;
+            color: #fff;
+            border-radius: 10px;
+            border: 1px solid #525f6b;
+            padding: 10px 20px;
+            font-family: "Inter Light", sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+
+            
+            position: absolute;
+            left: 50%;
+            bottom: 16px;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        #ar-button:hover {
+            border-color: #9a7348;
+            background-color: #9a7348;
+        }
+
+        #ar-button img {
+            width: 32px;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        #ar-button:focus {
+            outline: none;
+        }
+
+        
+        model-viewer::part(ar-button) {
+            display: none !important;
+        }
+    </style>
+</head>
+
 <body>
-  <div id="card">
-   
-    <model-viewer src="assets/robot"
-                  ios-src="assets/2k-Design-1.usdz"
-                  alt="AR 3D model 1"
-                  camera-controls
-                  interaction-prompt="auto"
-                  auto-rotate ar  ar-placement="floor">
-    </model-viewer>
-    <section class="attribution">
-      <span>
-        <h1>AR 3D Model</h1>
-        <span>By <a href="https://innovio.solutions/" target="_blank">INNOVIO Solutions S.A.L</a></span>
-      </span>
-    </section>
-    
-  </div>
-  <div id="card">
-    <model-viewer src="assets/2k-Design-2.glb"
-                  ios-src="assets/2k-Design-2.usdz"
-                  alt="AR 3D model 2"
-                  camera-controls
-                  interaction-prompt="auto"
-                  auto-rotate ar  ar-placement="floor">
-    </model-viewer>
-  </div>
+    <model-viewer
+        id="viewerObj"
+        src="Assests/master-bedroom.glb"
+        ios-src="Assests/master-bedroom.usdz"
+        alt="Apartment model"
+        ar
+        ar-modes="scene-viewer quick-look"
+        camera-controls
+        touch-action="pan-y"
+        shadow-intensity="1">
 
-  <div id="card">
-    <model-viewer src="assets/2k-Design-2.glb"
-                  ios-src="assets/2k-Design-2.usdz"
-                  alt="AR 3D model 2"
-                  camera-controls
-                  interaction-prompt="auto"
-                  auto-rotate ar  ar-placement="floor">
-    </model-viewer>
-  </div>
+        <button slot="ar-button" id="ar-button">
+            <img src="Assests/camera_white.svg" alt="">
+            <span>Augmented Reality</span>
+        </button>
 
-  <script type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-  </script>
+    </model-viewer>
 </body>
 </html>

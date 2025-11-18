@@ -1,1 +1,1 @@
-Ar Model Viewer 3
+Ar Model Viewer
